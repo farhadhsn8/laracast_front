@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 <template>
   <v-app>
     <v-app-bar
@@ -45,11 +47,20 @@
 
 <script>
 
+import HelloWorld from './components/HelloWorld';
+import Axios from "./axios";
+
 export default {
   name: 'App',
 
   data: () => ({
     //
   }),
+
+  mounted(){
+    Axios.get('threads').then(res => {
+      console.log(res)
+    });
+  }
 };
 </script>
