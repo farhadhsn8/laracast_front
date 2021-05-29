@@ -10,9 +10,7 @@
     >
     <v-card>
       <v-card-title>
-        <a class="text-decoration-none light-green--text" href="#">
-          Laravel title
-        </a>
+          <router-link to="/thread/laravel-error" class="text-decoration-none light-green--text"><h2>Laravel title</h2></router-link>
       </v-card-title>
       <v-card-text>
         <v-row>
