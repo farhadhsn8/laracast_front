@@ -14,18 +14,30 @@
             <v-form>
 
               <v-text-field
-                  label="Email"
-                  name="email"
-                  prepend-icon="mdi-email"
-                  type="email"
-                  v-model="email"
+                  label="Title"
+                  name="title"
+                  type="text"
+                  outlined
               ></v-text-field>
+
+              <v-textarea
+                outlined
+                name="content"
+                label="Content"
+                valu="">
+              </v-textarea>
+
+              <v-select
+              label="Channel"
+              outlined
+              ></v-select>
             </v-form>
           </v-card-text>
           <v-card-actions>
             <v-btn
             ripple
             color="pink"
+            dark
             >
               Submit
             </v-btn>
