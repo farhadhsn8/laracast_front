@@ -81,10 +81,9 @@
 
             </v-card-title>
             <v-card-text>
-              <p>
-                Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias asperiores assumenda deserunt error impedit maiores maxime nulla quam quibusdam repudiandae sed tempore unde, vel voluptates? Error harum magni soluta! sit amet, consectetur adipisicing elit. Consectetur consequatur dolor facere fugit magni, minus mollitia quaerat quia quisquam vero. Architecto corporis distinctio iste quaerat voluptatem? Eaque ipsa iusto sed?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab animi autem consequatur consequuntur cum dolorum ducimus eaque eveniet illum in optio perferendis perspiciatis placeat provident, quae quidem quod rem!
-              </p>
+              <vue-markdown>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae delectus, dicta dignissimos dolore doloribus earum enim eos, ipsum iste libero molestiae nisi non quae quaerat quas quasi repellat reprehenderit!
+              </vue-markdown>
             </v-card-text>
           </v-card>
         </v-col>
@@ -133,8 +132,12 @@
 </template>
 
 <script>
+import VueMarkdown from  'vue-markdown/src/VueMarkdown'
 export default {
-  name: "SingleThread"
+  name: "SingleThread",
+  components:{
+    VueMarkdown
+  }
 }
 </script>
 
