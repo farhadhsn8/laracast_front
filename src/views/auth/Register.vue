@@ -76,7 +76,7 @@ export default {
         password:this.password
       }
       registerRequest(formData).then(res =>{
-        alert("Registered successfully!");
+        this.$router.push('/login')
       }).catch(err=>{
         console.error(err)
       })
