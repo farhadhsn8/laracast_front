@@ -29,6 +29,9 @@
                   prepend-icon="mdi-email"
                   type="email"
                   v-model="email"
+                  :error="errors.email"
+                  :error-messages="errors.email"
+
               ></v-text-field>
 
               <v-text-field
@@ -38,6 +41,8 @@
                   prepend-icon="mdi-lock"
                   type="password"
                   v-model="password"
+                  :error="errors.password"
+                  :error-messages="errors.password"
               ></v-text-field>
             </v-form>
           </v-card-text>
@@ -58,14 +63,24 @@ export default {
   name: "Login",
   data:()=>({
     email:null,
-    password:null
+    password:null,
+    errors :{
+      email :null ,
+      password : null,
+    } ,
+    hasErrors :false
   }),
   methods:{
     sendLoginRequest(){
       loginRequest({
        email: this.email,
        password : this.password
-      });
+      }).catch(err=>{
+        if(err.response.status === 422){
+            this.hasErrors = true
+            this.errors = err.response.data.errors;
+        }
+      }) ;
     }
   }
 }

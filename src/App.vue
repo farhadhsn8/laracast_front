@@ -75,6 +75,7 @@ const { default: axios } = require("axios");
 
 
 import Axios from "./axios";
+import {getUserDataRequest} from "./requests/Auth";
 
 export default {
   name: 'App',
@@ -84,9 +85,6 @@ export default {
   }),
 
   mounted(){
-    Axios.get('threads').then(res => {
-      console.log(res)
-    });
   }
 };
 </script>
