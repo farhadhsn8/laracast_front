@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+export let baseUrl ='http://localhost:8000/api/';
 
 const Axios = axios.create({
-    baseURL: 'http://localhost:8000/api/v1/'
+    baseURL:'${baseUrl}v1/'
 });
 
 axios.defaults.withCredentials = true;

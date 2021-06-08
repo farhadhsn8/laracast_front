@@ -8,22 +8,24 @@ export let registerRequest = (formData)=>{
 export let loginRequest = async (formData) => {
     if (!checkAuth()) {
         let loginReq
-        await axios.get('http://localhost/api/csrf-cookie').then(res => {
+        await axios.get('${baseUrl}csrf-cookie').then(res => {
             loginReq = Axios.post('auth/login', formData)
         })
         return loginReq
     }
 };
 
-export let getUserDataRequest = (formData)=>{
+export let getUserDataRequest = ()=>{
     if (checkAuth())
     {
        return Axios.get('auth/user')
     }
 };
 
-export let checkAuth = (formData)=>{
-        let isAuth = false;
-        Axios.get('auth/user').then(res=>isAuth = res.data.message !== "Unauthenticated.")
-        return isAuth;
+export let checkAuth = async () => {
+    let isAuth = false;
+    await Axios.get('auth/user').then(res => isAuth = res.data.message !== "Unauthenticated.")
+    localStorage.setItem('isAuth', isAuth ? 'true' : 'false')
+
+    return isAuth;
 };
