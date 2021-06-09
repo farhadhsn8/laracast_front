@@ -29,7 +29,7 @@ const { default: axios } = require("axios");
 
       <v-spacer></v-spacer>
 
-     <div v-show="!isAuth">
+     <div v-if="!isAuth">
        <router-link to="/register">
          <v-btn
              text
@@ -48,9 +48,9 @@ const { default: axios } = require("axios");
          </v-btn>
        </router-link>
      </div>
-      <div v-show="isAuth">
+      <div v-if="isAuth">
         {{userData.name}}
-        <v-btn class="ml-3" light>LogOut</v-btn>
+        <v-btn class="ml-3" @click="sendLogoutRequest" light>LogOut</v-btn>
       </div>
     </v-app-bar>
 
@@ -81,18 +81,27 @@ const { default: axios } = require("axios");
 
 
 import Axios from "./axios";
-import {getUserDataRequest} from "./requests/Auth";
+import {checkAuth, getUserDataRequest} from "./requests/Auth";
 
 export default {
   name: 'App',
 
   data: () => ({
     isAuth : false,
-    userData : null
+    userData : {name:null}
   }),
-
+  methods:{
+    sendLogoutRequest() {
+      logoutRequest().then(res=>{
+        this.$router.push('/')
+        this.isAuth=false
+        localStorage.setItem('isAuth' , 'false');
+      })
+    }
+  },
   mounted(){
-      this.isAuth=checkAuth();
+      checkAuth();
+      this.isAuth=localStorage.getItem('isAuth')==='true';
       if(this.isAuth){
           getUserDataRequest().then(res =>{
             this.userData = res.data[0]
