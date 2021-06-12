@@ -12,21 +12,20 @@
        outlined
        >
          <v-card-title>
-           <h2>Laravel Error</h2>
+           <h2>{{thread.title}}</h2>
          </v-card-title>
          <v-card-text>
            <v-row>
              <v-col>
-               <p>سید فرهاد حسینی</p>
+               <p>{{ thread.user.name }}</p>
              </v-col>
              <v-col>
-               <p class="text-right">2021/05/28 14:27</p>
+               <p class="text-right">{{ thread.created_at }}</p>
              </v-col>
            </v-row>
-           <p>
-             Lorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias asperiores assumenda deserunt error impedit maiores maxime nulla quam quibusdam repudiandae sed tempore unde, vel voluptates? Error harum magni soluta! sit amet, consectetur adipisicing elit. Consectetur consequatur dolor facere fugit magni, minus mollitia quaerat quia quisquam vero. Architecto corporis distinctio iste quaerat voluptatem? Eaque ipsa iusto sed?
-             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab animi autem consequatur consequuntur cum dolorum ducimus eaque eveniet illum in optio perferendis perspiciatis placeat provident, quae quidem quod rem!
-           </p>
+           <vue-markdown v-html="thread.content">
+
+           </vue-markdown>
          </v-card-text>
        </v-card>
      </v-col>
@@ -133,10 +132,40 @@
 
 <script>
 import VueMarkdown from  'vue-markdown/src/VueMarkdown'
+import {getSingleThreadRequest} from "../../requests/Threads";
 export default {
   name: "SingleThread",
   components:{
     VueMarkdown
+  },
+  data:()=>({
+    thread:{
+      id:null,
+      title:null,
+      slug:null,
+      content:null,
+      best_answer_id:null,
+      created_at:null,
+      channel:{
+        id:null,
+        name:null
+      },
+      user:{
+        id:null,
+        name:null
+      }
+
+    }
+  }),
+  methods:{
+    fethThread(){
+      getSingleThreadRequest(this.$route.params.slug).then(res=>{
+        this.thread=res.data
+      })
+    }
+  },
+  mounted() {
+    this.fethThread()
   }
 }
 </script>
