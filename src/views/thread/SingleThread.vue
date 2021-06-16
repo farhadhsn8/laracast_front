@@ -225,19 +225,19 @@ export default {
         this.showReplyBox = false;
       })
     },
-    deleteThread() {
+    /*deleteThread() {
       deleteThreadRequest(this.thread.id).then(res => {
         this.$router.push('/');
       })
-    }
+    }*/
   },
   mounted() {
     this.fetchThread();
     checkAuth();
     this.isAuth = localStorage.getItem('isAuth') === 'true';
-    getUserDataRequest().then(res => {
+   /* getUserDataRequest().then(res => {
       this.userCanDelete = res.data[0].id === this.thread.user.id;
-    })
+    })*/
   }
 }
 </script>
