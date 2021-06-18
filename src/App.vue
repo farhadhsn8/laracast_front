@@ -26,7 +26,9 @@ const { default: axios } = require("axios");
           width="100"
         />
       </div>
-
+      <router-link to="/leaderboards">
+        <span class="mr-2" style="color: white !important;">leaderboards</span>
+      </router-link>
       <v-spacer></v-spacer>
 
      <div v-if="!isAuth">
@@ -47,6 +49,8 @@ const { default: axios } = require("axios");
            <v-icon>mdi-account</v-icon>
          </v-btn>
        </router-link>
+
+
      </div>
       <div v-if="isAuth">
         {{userData.name}}

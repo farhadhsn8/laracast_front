@@ -6,6 +6,7 @@ import Login from "../views/auth/Login";
 import SingleThread from "../views/thread/SingleThread";
 import CreateThread from "../views/thread/CreateThread";
 import {checkAuth} from "../requests/Auth";
+import Leaderboard from "../views/Leaderboard";
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component:localStorage.getItem('isAuth')==='false' ? Register :Home
+  },
+  {
+    path: '/leaderboards',
+    name: 'Leaderboards',
+    component: Leaderboard
   },
   {
     path: '/login',
